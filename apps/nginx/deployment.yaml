@@ -18,3 +18,4 @@ spec:
         image: memanas/clusterforge-nginx:initi
         ports:
         - containerPort: 80
+        
