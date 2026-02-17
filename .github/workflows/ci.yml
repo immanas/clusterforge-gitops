@@ -1,4 +1,4 @@
-name: Build and Push Image
+name: Build, Push and Update Manifest
 
 on:
   push:
@@ -9,8 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Login to DockerHub
@@ -19,22 +22,22 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Image
+      - name: Build Docker image
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/clusterforge-nginx:${{ github.sha }} apps/nginx
 
-      - name: Push Image
+      - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/clusterforge-nginx:${{ github.sha }}
 
-      - name: Update deployment image tag
+      - name: Update Kubernetes deployment image
         run: |
           sed -i "s|image:.*|image: ${{ secrets.DOCKER_USERNAME }}/clusterforge-nginx:${{ github.sha }}|" apps/nginx/deployment.yaml
 
-      - name: Commit changes
+      - name: Commit and push changes
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add apps/nginx/deployment.yaml
-          git commit -m "Update image to ${{ github.sha }}" || echo "No changes"
+          git commit -m "Update image to ${{ github.sha }}" || echo "No changes to commit"
           git push
