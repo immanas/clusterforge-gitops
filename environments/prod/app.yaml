@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/immanas/clusterforge-gitops.git
+    targetRevision: HEAD
+    path: apps/nginx
+  destination:
+    server: https://65CA640C18521F388B0B297597082A68.gr7.ap-south-1.eks.amazonaws.com
+    namespace: nginx-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
