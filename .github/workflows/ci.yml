@@ -26,3 +26,15 @@ jobs:
       - name: Push Image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/clusterforge-nginx:${{ github.sha }}
+
+      - name: Update deployment image tag
+        run: |
+          sed -i "s|image:.*|image: ${{ secrets.DOCKER_USERNAME }}/clusterforge-nginx:${{ github.sha }}|" apps/nginx/deployment.yaml
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add apps/nginx/deployment.yaml
+          git commit -m "Update image to ${{ github.sha }}" || echo "No changes"
+          git push
