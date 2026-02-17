@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: memanas/clusterforge-nginx:2b9813457ace45b0e2d8606c559c27f1a2e35b19
+          image: memanas/clusterforge-nginx:8a5b4b3fdc16644d92e5727ad7d8e433f1e33f5d
           
           ports:
             - containerPort: 80
