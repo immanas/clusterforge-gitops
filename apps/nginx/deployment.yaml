@@ -15,7 +15,19 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: memanas/clusterforge-nginx:9733ea615537f596851ed29344ce68b6afa4aa75
+        image: memanas/clusterforge-nginx:initi
         ports:
         - containerPort: 80
-        
+        spec:
+  containers:
+    - name: nginx
+      image: memanas/clusterforge-nginx:9733ea615537f596851ed29344ce68b6afa4aa75
+      ports:
+        - containerPort: 80
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
+        limits:
+          cpu: "250m"
+          memory: "256Mi"
