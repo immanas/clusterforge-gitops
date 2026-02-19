@@ -17,7 +17,7 @@ This repository is part of the larger **ClusterForge platform**.
 To fully understand how everything connects, follow this order:
 
 1️⃣ **Start here (Infrastructure Layer)**  
-🔗 https://github.com/immanas/clusterforge-infra 
+🔗 https://github.com/immanas/Clusterforge 
 ## 📂 ClusterForge GitOps – Folder Structure:
 ```
 clusterforge-gitops/
