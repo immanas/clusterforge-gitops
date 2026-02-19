@@ -1,4 +1,4 @@
-## 📦 Repository Purpose
+## 📦 Repository Purpose:
 
 This repository is the **GitOps layer of the ClusterForge project**.
 
@@ -8,3 +8,33 @@ In short:
 
 - `clusterforge-infra` → Provisions VPC, IAM, and multi-environment EKS infrastructure using Terraform  
 - `clusterforge-gitops` (this repo) → Deploys and manages applications on those clusters using ArgoCD and GitOps principles
+
+## 📂 ClusterForge GitOps – Folder Structure:
+```
+clusterforge-gitops/
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml                # CI pipeline (YAML validation / linting)
+│
+├── apps/
+│   └── nginx/
+│       ├── deployment.yaml       # Kubernetes Deployment
+│       ├── service.yaml          # Kubernetes Service
+│       ├── hpa.yaml              # Horizontal Pod Autoscaler
+│       ├── namespace.yaml        # Namespace definition
+│       └── kustomization.yaml    # Base app configuration (optional but recommended)
+│
+├── environments/
+│   ├── dev/
+│   │   ├── app.yaml              # ArgoCD Application manifest (dev cluster)
+│   │   └── kustomization.yaml    # Dev-specific overrides
+│   │
+│   └── prod/
+│       ├── app.yaml              # ArgoCD Application manifest (prod cluster)
+│       └── kustomization.yaml    # Prod-specific overrides
+│
+├── LICENSE
+├── README.md
+└── .gitignore
+```
