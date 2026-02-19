@@ -1,0 +1,26 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# Kubernetes generated files (if ever downloaded locally)
+*.kubeconfig
+
+# Helm (if added later)
+charts/
+*.tgz
+
+# Kustomize build output
+kustomize-build/
