@@ -47,3 +47,11 @@ clusterforge-gitops/
 ├── README.md
 └── .gitignore
 ```
+## 🔗 How Both Repositories Connect
+
+- `clusterforge-infra` creates the EKS clusters.
+- ArgoCD is installed on the control cluster.
+- This repository defines how applications are deployed to dev and prod clusters.
+- Git becomes the single source of truth for application state.
+
+Together, they form a complete end-to-end DevOps platform.
